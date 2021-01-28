@@ -371,11 +371,6 @@ def Game():
             if not ListEmpty(ListOfMoves):
                 PieceIndex = SelectMove(ListOfMoves)
                 Board, A, B = MakeMove(Board, A, B, ListOfMoves, PieceIndex)
-                
-                GameSaveChoice = input("Save the game to an external file (Y/N)? ")
-                if GameSaveChoice == 'y' or GameSaveChoice == 'Y':
-                    NewFileName = input("Please enter the name of the file you wish to create: ")
-                    SaveBoard(NewFileName, A, B)
 
                 NextPlayer = SwapPlayer(NextPlayer)
             else:
@@ -386,31 +381,12 @@ def Game():
                 PieceIndex = SelectMove(ListOfMoves)
                 Board, B, A = MakeMove(Board, B, A, ListOfMoves, PieceIndex)
 
-                GameSaveChoice = input("Save the game to an external file (Y/N)? ")
-                if GameSaveChoice == 'y' or GameSaveChoice == 'Y':
-                    NewFileName = input("Please enter the name of the file you wish to create: ")
-                    SaveBoard(NewFileName, A, B)
-
                 NextPlayer = SwapPlayer(NextPlayer)
             else:
                 GameEnd = True
     if FileFound:
         PrintResult(A, B , NextPlayer)
 
-def SaveBoard(NewFileName, firstplayer, secondplayer):
-    try:
-        GameFile = open(NewFileName, "w")
-        for index in firstplayer:
-                for number in index:
-                    GameFile.write(str(number))
-                    GameFile.write('\n')
-        for index in secondplayer:
-                for number in index:
-                    GameFile.write(str(number))
-                    GameFile.write('\n')
-        GameFile.close()
-    except:
-        DisplayErrorCode(5)
-
+if __name__ == "__main__":
     Game()      
    
